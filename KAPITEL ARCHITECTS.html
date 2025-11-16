@@ -1,0 +1,2849 @@
+﻿<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapitel Architectural Studio - Ճարտարապետական Նախագծում</title>
+    <meta name="description" content="Kapitel Architects - Ճարտարապետական ստուդիա: Նախագծում ենք բնակելի և հասարակական տարածքներ՝ կենտրոնանալով ֆունկցիոնալության և էսթետիկայի վրա.">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- EmailJS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your public key
+        (function() {
+            emailjs.init("QPu_hWKZQmzR9caP4");
+        })();
+    </script>
+    
+    <style>
+        :root {
+            --bg: #ffffff;
+            --card: #f8f8f8;
+            --muted: #666666;
+            --accent: #000000;
+            --primary: #333333;
+            --primary-light: #555555;
+            --success: #4d4d4d;
+            --error: #cc0000;
+            --border: #e0e0e0;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: #000000;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        header {
+            background: var(--card);
+            padding: 14px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            width: calc(100% - 48px);
+            max-width: 1200px;
+        }
+
+        header .brand {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .brand img {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        header:hover .brand img {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            padding: 8px 12px;
+            border-radius: 6px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            padding: 80px 0 0 0;
+            min-height: 50vh;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            line-height: 1.2;
+            color: var(--accent);
+        }
+
+        .hero p {
+            color: var(--muted);
+            margin-top: 16px;
+            font-size: 1.1rem;
+            max-width: 90%;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+            min-height: 44px;
+            min-width: 44px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            min-height: 280px;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 30px 0;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        label {
+            display: block;
+            margin-top: 16px;
+            font-weight: 500;
+        }
+
+        input[type="number"],
+        select,
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg);
+            color: var(--accent);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: var(--card);
+            color: var(--muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .social a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .social i, .social svg {
+            filter: brightness(0);
+        }
+
+        .detail {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .detail img {
+            width: 100%;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            border-color: var(--error) !important;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .success-message {
+            color: var(--success);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .instagram-fallback {
+            background: linear-gradient(45deg, #888, #999, #aaa, #bbb, #ccc);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            border-radius: 8px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .instagram-fallback i {
+            font-size: 48px;
+            filter: brightness(0);
+        }
+
+        .price-estimate {
+            background: var(--card);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            text-align: center;
+            display: none;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .price-estimate.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .testimonial {
+            background: var(--card);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .portfolio-item {
+            cursor: pointer;
+        }
+
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-current {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .language-current:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .language-flag {
+            width: 24px;
+            height: 16px;
+            border-radius: 2px;
+            border: 2px solid transparent;
+        }
+
+        .language-flag.active {
+            border-color: #666;
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 10px;
+            display: none;
+            z-index: 1000;
+            min-width: 140px;
+            border: 1px solid var(--border);
+        }
+
+        .language-menu.show {
+            display: block;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .language-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        #services,
+        #portfolio,
+        #about,
+        #config,
+        #contact {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        #portfolio .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        #portfolio .grid {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Portfolio Section Styles */
+        .portfolio-section {
+            margin-bottom: 40px;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .portfolio-header h3 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .portfolio-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .portfolio-nav .nav-btn {
+            background: var(--card);
+            color: var(--accent);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-nav .nav-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .portfolio-nav .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .portfolio-item {
+            background: var(--card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Նոր ոճեր պորտֆոլիոյի քարտերի համար */
+        .portfolio-media-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .portfolio-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-item:hover .portfolio-media {
+            transform: scale(1.05);
+        }
+
+        .media-type-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            z-index: 2;
+        }
+
+        .portfolio-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .portfolio-content p {
+            color: var(--muted);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .portfolio-content .date {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-actions {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--bg);
+            margin: 0 auto;
+            max-width: 1200px;
+            border-radius: 12px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+            background-color: var(--card);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted);
+            transition: color 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        /* Մոդալի համար նոր ոճեր */
+        .modal-media-container {
+            position: relative;
+            width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .modal-media {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+        }
+
+        .modal-video {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+        }
+
+        .modal-media-counter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        .modal-media-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+            z-index: 5;
+        }
+
+        .modal-nav-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .modal-nav-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-description {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .modal-date {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .modal-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Header & Navigation */
+            header {
+                position: fixed;
+                top: 10px;
+                width: calc(100% - 40px);
+                padding: 12px 15px;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            .brand {
+                font-size: 1rem;
+            }
+            
+            .brand span {
+                display: none; /* Թաքցնել տեքստը, ցույց տալ միայն լոգոն */
+            }
+            
+            .brand img {
+                height: 32px;
+            }
+            
+            nav {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav a {
+                display: none; /* Թաքցնել բոլոր նավիգացիոն հղումները */
+            }
+            
+            /* Միայն լեզուների ընտրությունը ցույց տալ */
+            .language-selector {
+                display: block;
+                margin-left: 0;
+                margin-top: 0;
+            }
+            
+            .language-current {
+                padding: 4px 6px;
+                font-size: 0.7rem;
+            }
+            
+            .language-menu {
+                right: -10px;
+                min-width: 100px;
+            }
+
+            .language-option {
+                padding: 6px 8px;
+                font-size: 0.8rem;
+            }
+
+            .language-flag {
+                width: 20px;
+                height: 14px;
+            }
+
+            /* Hero Section - նկարն առաջինը */
+            .hero {
+                flex-direction: column-reverse; /* Նկարը դնել վերևում */
+                padding: 100px 0 40px 0;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+            
+            .hero > div:last-child {
+                width: 100% !important;
+            }
+            
+            .hero .btn {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            /* Stats - փոքր իրար կողքի */
+            .stats {
+                flex-direction: row;
+                margin: 40px 0;
+                gap: 10px;
+                justify-content: space-around;
+            }
+            
+            .stat-item {
+                padding: 10px 5px;
+                flex: 1;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            /* Services - 2 2 2 դասավորություն */
+            #services .grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            
+            .card {
+                min-height: auto;
+                padding: 15px 10px;
+            }
+
+            /* Portfolio - մեկ նախագիծ և սլաքներ */
+            .portfolio-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .portfolio-nav {
+                align-self: flex-end;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .portfolio-actions {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            
+            .portfolio-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+/* About Section - տեքստը վերևում, նկարը ներքևում */
+#about .card > div {
+    flex-direction: column;
+    gap: 30px;
+}
+
+#about .card > div > div:first-child {
+    width: 100% !important;
+    order: 1;
+}
+
+#about .card > div > div:last-child {
+    width: 100% !important;
+    order: 2;
+    text-align: center;
+}
+
+#about .card > div > div:last-child .portfolio-media {
+    max-width: 300px;
+    margin: 0 auto;
+}
+            /* Project Config Section */
+            #config .card {
+                padding: 20px 15px;
+            }
+            
+            #configForm > div {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            #configForm label {
+                margin-top: 12px;
+                font-size: 0.9rem;
+            }
+            
+            #configForm input,
+            #configForm select,
+            #configForm textarea {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            #configForm .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .price-estimate {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            /* Contact Section */
+            #contact .card {
+                padding: 20px 15px;
+            }
+            
+            #contact > div:first-child > div {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .social {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .social a {
+                justify-content: center;
+                padding: 10px;
+            }
+
+            /* Modal Improvements */
+            .modal {
+                padding: 10px;
+            }
+            
+            .modal-content {
+                width: 100%;
+                max-height: 90vh;
+                margin: 20px auto;
+            }
+            
+            .modal-header {
+                padding: 15px 20px;
+            }
+            
+            .modal-title {
+                font-size: 1.2rem;
+            }
+            
+            .modal-body {
+                padding: 15px;
+                max-height: calc(90vh - 100px);
+            }
+            
+            .modal-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .modal-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 480px) {
+            .wrap {
+                padding: 16px;
+            }
+            
+            header {
+                width: calc(100% - 32px);
+                padding: 10px 12px;
+            }
+            
+            .brand span {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            /* Services - 1 սյունակ շատ փոքր սարքերի համար */
+            #services .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tablet Devices */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            nav a:hover::after {
+                width: 0;
+            }
+            
+            nav a:active {
+                background-color: rgba(0,0,0,0.05);
+            }
+            
+            .btn:hover {
+                transform: none;
+                box-shadow: var(--shadow);
+            }
+            
+            .btn:active {
+                transform: scale(0.95);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            }
+            
+            .card:hover {
+                transform: none;
+                box-shadow: var(--shadow);
+            }
+            
+            .card:active {
+                transform: scale(0.98);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            }
+            
+            /* Increase touch targets */
+            nav a {
+                min-height: 44px;
+                min-width: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .portfolio-item {
+                cursor: default;
+            }
+            html {
+    scroll-padding-top: 100px;
+}
+        }
+
+        /* High DPI Screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .brand img {
+                image-rendering: -webkit-optimize-contrast;
+            }
+        }
+        /* About Section Styles */
+.about-container {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-image {
+    width: 40%;
+}
+
+/* Mobile Styles for About Section */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .about-text {
+        width: 100% !important;
+        order: 1;
+    }
+    
+    .about-image {
+        width: 100% !important;
+        order: 2;
+        text-align: center;
+    }
+    
+    .about-image .portfolio-media {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Portfolio Modal -->
+    <div class="modal" id="portfolioModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Project Title</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modalMedia">
+                    <!-- Media content will be inserted here -->
+                </div>
+                <p class="modal-description" id="modalDescription">Project description</p>
+                <div class="modal-details">
+                    <div class="modal-date" id="modalDate">Date</div>
+                    <a href="#" target="_blank" class="btn" id="modalInstagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="modal-nav">
+                    <button class="btn btn-outline" id="modalPrev">
+                        <i class="fas fa-chevron-left"></i> 
+                    </button>
+                    <button class="btn btn-outline" id="modalNext">
+                         <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <header id="mainHeader">
+            <div class="brand">
+                <img src="IMG_3644.png" alt="Kapitel Logo">
+                <span>KAPITEL ARCHITECTS</span>
+            </div>
+            <nav aria-label="Հիմնական նավիգացիա">
+                <a href="#services" data-key="nav.services">Ծառայություններ</a>
+                <a href="#portfolio" data-key="nav.portfolio">Նախագծեր</a>
+                <a href="#about" data-key="nav.about">Մեր մասին</a>
+                
+                <!-- Լեզուների ընտրության տարր -->
+                <div class="language-selector">
+                    <div class="language-current" onclick="toggleLanguageMenu()">
+                        <img src="arm.png" alt="Հայերեն" class="language-flag active" id="currentFlag" data-lang="hy">
+                        <i class="fas fa-chevron-down" style="font-size:12px; margin-left:5px;"></i>
+                    </div>
+                    <div class="language-menu" id="languageMenu">
+                        <div class="language-option" onclick="changeLanguage('hy'); toggleLanguageMenu();">
+                            <img src="arm.png" alt="Հայերեն" class="language-flag" data-lang="hy">
+                            <span>Հայերեն</span>
+                        </div>
+                        <div class="language-option" onclick="changeLanguage('ru'); toggleLanguageMenu();">
+                            <img src="rus.png" alt="Русский" class="language-flag" data-lang="ru">
+                            <span>Русский</span>
+                        </div>
+                        <div class="language-option" onclick="changeLanguage('en'); toggleLanguageMenu();">
+                            <img src="ang.png" alt="English" class="language-flag" data-lang="en">
+                            <span>English</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+ <section class="hero">
+            <div class="hero-content">
+                <h1 data-key="hero.title">KAPITEL ARCHITECTS</h1>
+                <p class="muted" data-key="hero.subtitle">Ճիշտ նախագիծը Ձեր երազանքի իրականացման կարևոր սկիզբն է։</p>
+                <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:12px">
+                    <a class="btn btn-outline" href="#contact" data-key="hero.contactBtn">
+                        <i class="fas fa-envelope"></i> Կապ մեզ հետ
+                    </a>
+                    <a class="btn btn-outline" href="#config" data-key="hero.projectBtn">
+                        <i class="fas fa-calculator"></i> Ստեղծիր քո նախագիծը
+                    </a>
+                </div>
+            </div>
+            <div style="width:40%">
+                <div class="portfolio-media" style="position:relative;display:flex;align-items:center;justify-content:center;height:300px;border-radius:12px;overflow:hidden">
+                                        <img src="IMG_3644.png" alt="Kapitel Architects" style="width:100%;height:100%;object-fit:cover">
+                </div>
+            </div>
+        </section>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">90+</div>
+                <div class="stat-label" data-key="stats.projects">Ավարտված նախագծեր</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6+</div>
+                <div class="stat-label" data-key="stats.experience">Տարիների փորձ</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label" data-key="stats.clients">Գոհունակություն</div>
+            </div>
+        </div>
+
+        <section id="services" class="card">
+            <h2 class="section-title" data-key="services.title"><br> Ծառայություններ</h2>
+            <div class="grid">
+                <div class="card">
+                    <i class="fas fa-lightbulb" style="font-size:36px;margin-bottom:16px;color:#000000;"></i>
+                    <h3 data-key="services.sketchTitle">Էսքիզային նախագիծ</h3>
+                    <p class="muted" data-key="services.sketchDesc">Սկսում ենք գաղափարից․ ներկայացնում ենք տարածքի նախնական տեսքը, ոճը և ծավալային լուծումները՝ ապագա նախագծի հստակ պատկերացում ստեղծելու համար։</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-drafting-compass" style="font-size:36px;margin-bottom:16px;color:#000000;"></i>
+                    <h3 data-key="services.architectureTitle">Ճարտարապետական նախագծում</h3>
+                    <p class="muted" data-key="services.architectureDesc">Մշակում ենք ամբողջական ճարտարապետական նախագիծ՝ ներառյալ պլանավորումը, կառուցվածքային և ինժեներական լուծումները՝ ապահովելով ֆունկցիոնալ և գեղագիտական համադրություն։</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-clipboard-check" style="font-size:36px;margin-bottom:16px;color:#000000;"></i>
+                    <h3 data-key="services.supervisionTitle">Հեղինակային հսկողություն</h3>
+                    <p class="muted" data-key="services.supervisionDesc">Հետևում ենք, որ շինարարական աշխատանքները լիովին համապատասխանում են նախագծին և դիզայնի սկզբնական գաղափարին՝ ապահովելով բարձր որակ և ճշգրտություն։</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-pencil-ruler" style="font-size:36px;margin-bottom:16px;color:#000000;"></i>
+                    <h3 data-key="services.interiorTitle">Ինտերիեր դիզայն</h3>
+                    <p class="muted" data-key="services.interiorDesc">Ստեղծում ենք ներդաշնակ և ժամանակակից ինտերիերներ՝ հաշվի առնելով հաճախորդի ոճը, տարածքի հնարավորությունները և ֆունկցիոնալ պահանջները։</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-building" style="font-size:36px;margin-bottom:16px;color:#000000;"></i>
+                    <h3 data-key="services.exteriorTitle">Էքստերիեր դիզայն</h3>
+                    <p class="muted" data-key="services.exteriorDesc">Մշակում ենք շենքերի և տարածքների արտաքին տեսքի լուծումներ՝ համադրելով գեղագիտությունը, կառուցվածքային հստակությունը և միջավայրի յուրահատկությունը։</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-hard-hat" style="font-size:36px;margin-bottom:16px;color:#000000;"></i>
+                    <h3 data-key="services.constructionTitle">Շինարարություն և վերանորոգում</h3>
+                    <p class="muted" data-key="services.constructionDesc">Կատարում ենք շինարարական և վերանորոգման ամբողջական աշխատանքներ՝ ապահովելով որակ, ժամանակացույցի պահպանում և պրոֆեսիոնալ վերահսկողություն յուրաքանչյուր փուլում։</p>
+                </div>
+            </div>
+            </br>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" style="margin-top:60px">
+            <h2 class="section-title" data-key="portfolio.title">Նախագծեր</h2>
+            
+            <!-- Photos Section -->
+            <div class="portfolio-section">
+                <div class="portfolio-header">
+                    <h3 data-key="portfolio.photos"></h3>
+                    <div class="portfolio-nav">
+                        <button class="nav-btn prev-btn" id="photoPrevBtn" aria-label="Previous photos">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="nav-btn next-btn" id="photoNextBtn" aria-label="Next photos">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="portfolio-grid" id="photoGrid">
+                    <!-- Photos will be loaded here -->
+                    <div class="loading-container" style="text-align:center;padding:40px">
+                        <div class="loading"></div>
+                        <p data-key="portfolio.loadingPhotos">Բեռնվում են նախագծերը...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="about" class="card" style="margin-top:60px;">
+    <h2 class="section-title" data-key="about.title">Մեր մասին</h2>
+    <div class="about-container">
+        <div class="about-text">
+            <p data-key="about.description1">Kapitel Architects-ը հիմնադրվել է 2018 թվականին:</p>
+            <p data-key="about.description2" style="margin-top:16px;">Մեր փիլիսոփայությունը պարզ է՝ ստեղծել յուրահատուկ տարածքներ, որոնք համադրում են ֆունկցիոնալությունը և գեղագիտությունը:</p>
+        </div>
+        <div class="about-image">
+            <div class="portfolio-media" style="position:relative;display:flex;align-items:center;justify-content:center;height:250px;border-radius:12px;overflow:hidden">
+                <img src="images/KAPITEL ARCHITECTS.jpg" alt="Kapitel Architects Team" style="width:100%;height:100%;object-fit:cover">
+            </div>
+        </div>
+    </div>
+    </br>
+    </br> 
+    
+</section>
+
+
+        <section id="config" class="card" style="margin-top:60px">
+            <h2 class="section-title" data-key="config.title">Ստեղծել իմ նախագիծը</h2>
+            <p class="muted" data-key="config.subtitle" style="text-align:center; max-width:800px; margin:0 auto 30px;">
+                Ընտրեք անհրաժեշտ դաշտերը և ստացեք նախնական գնահատական ձեր նախագծի համար: Մենք կկապնվենք ձեզ հետ 24 ժամվա ընթացքում:
+            </p>
+
+            <form id="configForm" onsubmit="return onSendRequest(event)">
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+                    <div>
+                        <label data-key="config.projectType">Նախագծի տեսակ</label>
+                        <select id="typeSelect" required>
+                            <option value="" disabled selected data-key="config.selectType">Ընտրեք տեսակը</option>
+                            <option value="construction" data-key="config.construction">Կառուցապատում</option>
+                            <option value="renovation" data-key="config.renovation">Վերակառուցում</option>
+                            <option value="design" data-key="config.design">Դիզայն</option>
+                            <option value="building" data-key="config.building">Շինարարություն</option>
+                        </select>
+
+                        <label style="margin-top:16px;" data-key="config.objectType">Օբյեկտի տեսակ</label>
+                        <select id="objectSelect" required>
+                            <option value="" disabled selected data-key="config.selectObject">Ընտրեք տեսակը</option>
+                            <option value="residential" data-key="config.residential">Բնակելի</option>
+                            <option value="public" data-key="config.public">Հասարակական</option>
+                            <option value="industrial" data-key="config.industrial">Արտադրական</option>
+                        </select>
+
+                        <label style="margin-top:16px;" data-key="config.area">Մակերես (մ²)</label>
+                        <input id="areaInput" type="number" min="1" data-key="config.areaPlaceholder" placeholder="Օրինակ՝ 120" required />
+                        <div id="areaError" class="error-message"></div>
+
+                        <!-- Ավելացված բլոկը գնահատականի համար -->
+                        <div class="price-estimate" id="priceEstimate">
+                            <div style="background:var(--card); padding:16px; border-radius:8px; border:1px solid var(--border); text-align:center;">
+                                <strong data-key="config.estimate" style="display:block; margin-bottom:8px;">
+                                    Նախնական գնահատական
+                                </strong>
+                                <div style="font-size:1.5rem; font-weight:700; color:var(--accent);">
+                                    <span id="estimatedPrice">0</span> AMD
+                                </div>
+                                <small class="muted" style="display:block; margin-top:8px;">
+                                    *Գինը կարող է փոփոխվել՝ կախված նախագծի մանրամասներից
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label data-key="config.contact">Կապ Ձեզ հետ</label>
+                        <input id="nameInput" type="text" data-key="form.name" placeholder="Անուն" required />
+                        <div id="nameError" class="error-message"></div>
+
+                        <input id="emailInput" type="email" data-key="form.email" placeholder="Էլ․ փոստ" style="margin-top:16px;" />
+                        <div id="emailError" class="error-message"></div>
+
+                        <input id="phoneInput" type="text" data-key="form.phone" placeholder="Հեռախոսահամար" required style="margin-top:16px;" />
+                        <div id="phoneError" class="error-message"></div>
+
+                        <label style="margin-top:16px;" data-key="config.details"> </label>
+                        <textarea id="messageInput" data-key="form.message" placeholder="Նկարագրեք ձեր նախագծի մասին..." rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div style="display:flex;justify-content:flex-end;margin-top:24px">
+                    <button class="btn btn-primary" type="submit" id="submitBtn" style="padding:14px 28px;">
+                        <i class="fas fa-paper-plane"></i>
+                        <span id="submitText" data-key="config.submit">Ստանալ գնառաջարկ</span>
+                    </button>
+                </div>
+            </form>
+
+            <div id="result" style="margin-top:16px"></div>
+        </section>
+
+        <section id="contact" class="card" style="margin-top:40px; padding: 24px;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <h3 data-key="contact.contactDetails" style="margin-bottom:24px;">Կոնտակտային տվյալներ</h3>      
+                <div style="margin-top:0; width: 100%; max-width:400px;">
+                    <div style="display:flex; align-items:center; margin-bottom:20px; justify-content: center;">
+                        <i class="fas fa-phone" style="margin-right:12px; color:#000000;"></i>
+                        <a href="tel:+37477311112" 
+                           style="text-decoration: none; color: inherit; cursor: pointer;"
+                           data-key="contact.phone">
+                            +(374)77 31 11 12
+                        </a>
+                    </div>
+                    <div style="display:flex; align-items:center; margin-bottom:24px; justify-content: center;">
+                        <i class="fas fa-envelope" style="margin-right:12px; color:#000000;"></i>
+                        <a href="mailto:kapitelarchitects@gmail.com" 
+                           style="text-decoration: none; color: inherit; cursor: pointer;"
+                           data-key="contact.email">
+                            kapitelarchitects@gmail.com
+                        </a>
+                    </div>
+                    <div style="display:flex; align-items:center; margin-bottom:20px; justify-content: center;">
+                        <i class="fas fa-map-marker-alt" style="margin-right:12px; color:#000000;"></i>
+                        <a href="https://yandex.com/maps/10262/yerevan/house/YE0YcwdgSEEGQFpqfX10cHhibQ==/?ll=44.500140%2C40.151419&z=16" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           style="text-decoration: none; color: inherit; cursor: pointer; display: flex; align-items: center;"
+                           data-key="contact.addressText">
+                            Garegin Njdeh 44
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:32px; display:flex; justify-content:center; gap:24px;" class="social">
+                <a href="https://wa.me/37477311112" target="_blank" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.instagram.com/kapitel_architects/" target="_blank" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://facebook.com/kapitel_architects" target="_blank" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <div style="margin-bottom:20px;">
+                <div class="muted" data-key="footer.studio">Ճարտարապետական ստուդիա</div>
+            </div>
+            <div data-key="footer.copyright">© <span id="year"></span> Kapitel architects</div>
+        </footer>
+    </div>
+
+    <script>
+        // Fixed language function to update the flag
+        function changeLanguage(lang) {
+            localStorage.setItem('preferredLanguage', lang);
+            
+            // Update the current flag
+            const currentFlag = document.getElementById('currentFlag');
+            if (lang === 'hy') {
+                currentFlag.src = 'arm.png';
+                currentFlag.alt = 'Հայերեն';
+            } else if (lang === 'ru') {
+                currentFlag.src = 'rus.png';
+                currentFlag.alt = 'Русский';
+            } else if (lang === 'en') {
+                currentFlag.src = 'ang.png';
+                currentFlag.alt = 'English';
+            }
+            
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            document.querySelectorAll('select option[data-key]').forEach(option => {
+                const key = option.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    option.textContent = translations[lang][key];
+                }
+            });
+            
+            document.querySelectorAll('.language-flag').forEach(flag => {
+                flag.classList.remove('active');
+            });
+            
+            const activeFlag = document.querySelector(`.language-flag[data-lang="${lang}"]`);
+            if (activeFlag) {
+                activeFlag.classList.add('active');
+            }
+            
+            document.documentElement.lang = lang;
+        }
+
+        // Fixed portfolio pagination - show 1 item per page for mobile
+        let currentPhotoPage = 1;
+        const itemsPerPage = window.innerWidth <= 768 ? 1 : 3;
+
+        function renderGrid(data, containerId) {
+            const container = document.getElementById(containerId);
+            const currentPage = currentPhotoPage;
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentItems = data.slice(startIndex, endIndex);
+            const totalPages = Math.ceil(data.length / itemsPerPage);
+            
+            const prevBtn = document.getElementById('photoPrevBtn');
+            const nextBtn = document.getElementById('photoNextBtn');
+            
+            if (prevBtn) prevBtn.disabled = currentPage === 1;
+            if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+            
+            container.innerHTML = '';
+            
+            if (currentItems.length === 0) {
+                container.innerHTML = `
+                    <div class="card" style="grid-column: 1 / -1;">
+                        <div class="instagram-fallback">
+                            <i class="fab fa-instagram"></i>
+                            <p>Տվյալներ չկան</p>
+                            <a href="https://www.instagram.com/kapitel_architects/" target="_blank" class="btn">Այցելել Instagram</a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                currentItems.forEach(item => {
+                    const card = createPortfolioCard(item);
+                    container.appendChild(card);
+                });
+                
+                // Add page indicator
+                const pageIndicator = document.createElement('div');
+                pageIndicator.style.gridColumn = '1 / -1';
+                pageIndicator.style.textAlign = 'center';
+                pageIndicator.style.marginTop = '20px';
+                pageIndicator.innerHTML = `
+                    <span class="muted">Էջ ${currentPage} / ${totalPages}</span>
+                `;
+                container.appendChild(pageIndicator);
+            }
+        }
+
+        function changePage(newPage) {
+            currentPhotoPage = newPage;
+            renderGrid(portfolioData.photos, "photoGrid");
+            
+            // Սպասել, որ grid-ը render լինի, ապա scroll անել
+            setTimeout(() => {
+                const section = document.getElementById('portfolio');
+                const headerHeight = document.getElementById('mainHeader').offsetHeight;
+                const offsetPosition = section.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+
+        // Updated price calculator with new pricing structure
+        function calculatePrice(type, object, area) {
+            const areaNum = parseFloat(area) || 0;
+            if (areaNum <= 0) return 0;
+            
+            let price = 0;
+            
+            // Կառուցապատում
+            if (type === 'construction') {
+                if (object === 'residential') {
+                    price = areaNum > 300 ? 4000 * areaNum : 3000 * areaNum;
+                } else if (object === 'public' || object === 'industrial') {
+                    price = areaNum > 200 ? 4000 * areaNum : 3000 * areaNum;
+                }
+            }
+            // Վերակառուցում
+            else if (type === 'renovation') {
+                let basePrice = 4000 * areaNum;
+                if (areaNum > 200) {
+                    price = basePrice * 1.10; // 10% ավելացում
+                } else {
+                    price = basePrice;
+                }
+            }
+            // Դիզայն
+            else if (type === 'design') {
+                let basePrice = 6000 * areaNum;
+                if (areaNum > 200) {
+                    price = basePrice * 1.15; // 15% ավելացում
+                } else {
+                    price = basePrice;
+                }
+            }
+            // Շինարարություն
+            else if (type === 'building') {
+                if (object === 'residential') {
+                    price = 90000 * areaNum;
+                } else if (object === 'public') {
+                    price = 100000 * areaNum;
+                } else if (object === 'industrial') {
+                    price = 80000 * areaNum;
+                }
+            }
+            
+            return Math.round(price);
+        }
+
+        function updatePriceEstimate() {
+            const type = document.getElementById('typeSelect').value;
+            const object = document.getElementById('objectSelect').value;
+            const area = document.getElementById('areaInput').value;
+            
+            console.log('Updating price estimate:', {type, object, area});
+            
+            // Ստուգել, որ բոլոր դաշտերը լրացված են
+            if (type && object && area && parseFloat(area) > 0) {
+                const price = calculatePrice(type, object, area);
+                console.log('Calculated price:', price);
+                
+                const estimatedPriceElement = document.getElementById('estimatedPrice');
+                const priceEstimateElement = document.getElementById('priceEstimate');
+                
+                if (estimatedPriceElement && priceEstimateElement) {
+                    estimatedPriceElement.textContent = price.toLocaleString('hy-AM');
+                    priceEstimateElement.style.display = 'block';
+                    priceEstimateElement.classList.add('show');
+                }
+            } else {
+                const priceEstimateElement = document.getElementById('priceEstimate');
+                if (priceEstimateElement) {
+                    priceEstimateElement.style.display = 'none';
+                    priceEstimateElement.classList.remove('show');
+                }
+            }
+        }
+
+        function initializePriceCalculator() {
+            const typeSelect = document.getElementById("typeSelect");
+            const objectSelect = document.getElementById("objectSelect");
+            const areaInput = document.getElementById("areaInput");
+            
+            // Ստուգել, որ բոլոր տարրերը գոյություն ունեն
+            if (!typeSelect || !objectSelect || !areaInput) {
+                console.error('Price calculator elements not found');
+                return;
+            }
+            
+            // Ավելացնել event listener-ներ բոլոր ձևի տարրերի համար
+            typeSelect.addEventListener("change", updatePriceEstimate);
+            objectSelect.addEventListener("change", updatePriceEstimate);
+            areaInput.addEventListener("input", updatePriceEstimate);
+            areaInput.addEventListener("change", updatePriceEstimate);
+            
+            // Նաև ավելացնել event listener-ներ բոլոր input-ների համար
+            document.querySelectorAll('#configForm input, #configForm select').forEach(element => {
+                if (element.id !== 'typeSelect' && element.id !== 'objectSelect' && element.id !== 'areaInput') {
+                    element.addEventListener('input', updatePriceEstimate);
+                    element.addEventListener('change', updatePriceEstimate);
+                }
+            });
+            
+            // Անմիջապես թարմացնել գինը էջի բեռնման ժամանակ
+            setTimeout(updatePriceEstimate, 100);
+            
+            console.log('Price calculator initialized successfully');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Սահմանել ընթացիկ տարին
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Ինիցիալիզացնել լեզուն
+            const savedLang = localStorage.getItem('preferredLanguage') || 'hy';
+            changeLanguage(savedLang);
+            
+            // Ինիցիալիզացնել պորտֆոլիոն
+            initializePortfolio();
+            
+            // ԿԱՐԵՎՈՐՈՒԹՅՈՒՆ. Ինիցիալիզացնել գների կալկուլյատորը
+            // Սպասել, որ DOM-ը ամբողջությամբ պատրաստ լինի
+            setTimeout(() => {
+                initializePriceCalculator();
+            }, 500);
+            
+            // Ինիցիալիզացնել "վերադառնալ վերև" կոճակը
+            initializeBackToTop();
+            
+            // Ինիցիալիզացնել սահուն սքրոլինգը
+            initializeSmoothScrolling();
+            
+            // Ինիցիալիզացնել թաչ ժեստերը
+            initTouchGestures();
+            
+            console.log('Page fully initialized including price calculator');
+        });
+
+        // Add missing translations for the new content
+        const translations = {
+            hy: {
+                // Նավիգացիա
+                "nav.services": "Ծառայություններ",
+                "nav.portfolio": "Նախագծեր", 
+                "nav.about": "Մեր մասին",
+                "nav.contact": "Կապ",
+                
+                // Hero բաժին
+                "hero.title": "KAPITEL ARCHITECTS",
+                "hero.subtitle": "Ճիշտ նախագիծը Ձեր երազանքի իրականացման կարևոր սկիզբն է:",
+                "hero.contactBtn": "Կապ մեզ հետ",
+                "hero.projectBtn": "Ստեղծիր քո նախագիծը",
+                
+                // Վիճակագրություն
+                "stats.projects": "Ավարտված նախագծեր",
+                "stats.experience": "Տարիների փորձ", 
+                "stats.clients": "Գոհունակություն",
+                
+                // Ծառայություններ
+                "services.title": "Ծառայություններ",
+                "services.sketchTitle": "Էսքիզային նախագիծ",
+                "services.sketchDesc": "Սկսում ենք գաղափարից․ ներկայացնում տարածքի նախնական տեսքը, ոճը և լուծումները՝ ապագա նախագծի հստակ ստեղծման նպատակով։",
+                "services.architectureTitle": "Ճարտարապետական նախագծում",
+                "services.architectureDesc": "Մշակում ենք ճարտարապետական նախագիծ՝ պլանավորում, ինժեներական լուծումներ՝ ապահովելով կառուցվածքային և գեղագիտական համադրություն",
+                "services.supervisionTitle": "Հեղինակային հսկողություն",
+                "services.supervisionDesc": "Հետևում ենք, շինարարական աշխատանքները իրականացմանը ըստ նախագծի և դիզայնի գաղափարի՝ ապահովելով բարձր որակ և ճշգրտություն",
+                "services.interiorTitle": "Ինտերիեր դիզայն",
+                "services.interiorDesc": "Ստեղծում ենք ներդաշնակ և ժամանակակից ինտերիեր՝ հաշվի առնելով հաճախորդի ոճը, տարածքի հնարավորությունները և ֆունկցիոնալ պահանջները։",
+                "services.exteriorTitle": "Էքստերիեր դիզայն",
+                "services.exteriorDesc": "Մշակում ենք շինությունների և տարածքների արտաքին տեսքի լուծումներ՝ դիտարկելով կառուցվածքային հստակությունը և միջավայրի յուրահատկությունը։",
+                "services.constructionTitle": "Շինարարություն և վերանորոգում",
+                "services.constructionDesc": "Կատարում ենք շինարարական և վերանորոգման աշխատանքներ՝ ապահովելով որակ, ժամանակացույցի պահպանում, վերահսկողություն յուրաքանչյուր փուլում։",
+                
+                // Պորտֆոլիո
+                "portfolio.title": "Նախագծեր",
+                "portfolio.loadingPhotos": "Բեռնվում են նախագծերը...",
+                "portfolio.back": "Վերադառնալ",
+                "portfolio.viewInstagram": "Դիտել Instagram-ում",
+                "portfolio.more": "Ավելին",
+                
+                // Մեր մասին
+                "about.title": "Մեր մասին",
+                "about.description1": "Kapitel Architects-ը շուկայում է 2018 թվականից։",
+                "about.description2": "Ձևավորելով ժամանակակից շինարարական միջավայր, որտեղ միահյուսվում են ֆունկցիոնալությունն ու գեղագիտական մտածողությունը։ Մեր թիմի աշխատանքը հիմնված է ազնվության, թափանցիկության, պրոֆեսիոնալիզմի և հաճախորդակենտրոն մոտեցման վրա։ Մեր առաքելությունն է ստեղծել այնպիսի հնարավորություններ, որոնք օգնում են մարդկանց կյանքի կոչել իրենց երազանքներն ու պատկերացումները տարածքների մասին՝ վերածելով դրանք ճարտարապետական իրականության։",
+                "about.team": "Մասնագետներ",
+                "about.cities": "Քաղաքներ",
+                "about.satisfaction": "Գոհունակություն",
+                
+                // Ստեղծել նախագիծը
+                "config.title": "Ստեղծել իմ նախագիծը",
+                "config.subtitle": "Ընտրեք անհրաժեշտ դաշտերը և ստացեք նախնական գնահատական ձեր նախագծի համար: Մենք կկապնվենք ձեզ հետ 24 ժամվա ընթացքում:",
+                "config.projectType": "Նախագծի տեսակ",
+                "config.selectType": "Ընտրեք տեսակը",
+                "config.construction": "Կառուցապատում",
+                "config.renovation": "Վերակառուցում", 
+                "config.design": "Դիզայն",
+                "config.building": "Շինարարություն",
+                "config.objectType": "Օբյեկտի տեսակ",
+                "config.selectObject": "Ընտրեք տեսակը",
+                "config.residential": "Բնակելի",
+                "config.public": "Հասարակական",
+                "config.industrial": "Արտադրական",
+                "config.area": "Մակերես (մ²)",
+                "config.areaPlaceholder": "Օրինակ՝ 120",
+                "config.estimate": "Նախնական գնահատական",
+                "config.contact": "Կապ Ձեզ հետ",
+                "config.namePlaceholder": "Անուն",
+                "config.emailPlaceholder": "Էլ․ փոստ",
+                "config.phonePlaceholder": "Հեռախոսահամար",
+                
+                "config.detailsPlaceholder": "Նկարագրեք ձեր նախագծի մասին...",
+                "config.submit": "Ստանալ գնառաջարկ",
+                "config.sending": "Ուղարկվում է...",
+                "config.success": "Գնառաջարկը պատրաստ է։ Բացվում է փոստի ծրագիրը...",
+                "config.error": "Սխալ է տեղի ունեցել։ Խնդրում ենք փորձել կրկին։",
+                
+                // Կոնտակտ
+                "contact.contactDetails": "Կոնտակտային տվյալներ",
+                "contact.phone": "+374 77 311 112",
+                "contact.address": "Հասցե",
+                "contact.email": "kapitelarchitects@gmail.com",
+                "contact.addressText": "Գարեգին Նժդեհ 44, Երևան, Հայաստան",
+                
+                // Footer
+                "footer.studio": "Ճարտարապետական ստուդիա",
+                "footer.copyright": "© Kapitel Architects",
+                
+                // Սխալների հաղորդագրություններ
+                "error.name": "Անունը պետք է պարունակի առնվազն 2 նիշ",
+                "error.email": "Խնդրում ենք մուտքագրել վավեր էլ․փոստի հասցե",
+                "error.phone": "Խնդրում ենք մուտքագրել վավեր հեռախոսահամար",
+                "error.area": "Մակերեսը պետք է լինի 1-10000 մ² միջակայքում",
+                
+                // Ֆորմի placeholder-ներ
+                "form.name": "Անուն",
+                "form.email": "Էլ․ փոստ",
+                "form.phone": "Հեռախոսահամար",
+                "form.message": "Նկարագրեք ձեր նախագծի մասին..."
+            },
+            ru: {
+                // Նավիգացիя
+                "nav.services": "Услуги",
+                "nav.portfolio": "Портфолио",
+                "nav.about": "О нас", 
+                "nav.contact": "Контакты",
+                
+                // Hero раздел
+                "hero.title": "KAPITEL ARCHITECTS",
+                "hero.subtitle": "Проект в ритме вашей жизни — проектирование жилых и общественных пространств. Мы создаем функциональные, эстетичные и устойчивые архитектурные решения.",
+                "hero.contactBtn": "Связаться с нами",
+                "hero.projectBtn": "Создать свой проект",
+                
+                // Статистика
+                "stats.projects": "Завершенные проекты",
+                "stats.experience": "Лет опыта",
+                "stats.clients": "Довольных клиентов",
+                
+                // Услуги
+                "services.title": "Услуги",
+                "services.sketchTitle": "Эскизный проект",
+                "services.sketchDesc": "Мы начинаем с идеи: представляем предварительный облик пространства, стиль и решения — для точного формирования будущего проекта.",
+                "services.architectureTitle": "Архитектурное проектирование", 
+                "services.architectureDesc": "Разрабатываем архитектурный проект: планировочные решения, инженерные системы — обеспечивая конструктивную и эстетическую целостность.",
+                "services.supervisionTitle": "Авторский надзор",
+                "services.supervisionDesc": "Контролируем выполнение строительных работ в соответствии с проектом и дизайнерской концепцией — обеспечивая высокое качество и точность.",
+                "services.interiorTitle": "Дизайн интерьера",
+                "services.interiorDesc": "Создаем современный и гармоничный интерьер с учетом стиля клиента, особенностей пространства и функциональных требований.",
+                "services.exteriorTitle": "Дизайн экстерьера", 
+                "services.exteriorDesc": "Разрабатываем решения для внешнего облика зданий и территорий — учитывая конструктивные особенности и характер окружающей среды.",
+                "services.constructionTitle": "Строительство и ремонт",
+                "services.constructionDesc": "Выполняем строительные и ремонтные работы — обеспечивая качество, соблюдение сроков и контроль на каждом этапе.",
+                
+                // Портфолио
+                "portfolio.title": "Портфолио",
+                "portfolio.videos": "Видео",
+                "portfolio.loadingPhotos": "Загружаются фотографии...",
+                "portfolio.loadingVideos": "Загружаются видео...",
+                "portfolio.back": "Вернуться",
+                "portfolio.viewInstagram": "Смотреть в Instagram",
+                "portfolio.more": "Подробнее",
+                
+                // О нас
+                "about.title": "О нас",
+                "about.description1": "Kapitel Architects  на рынке с 2018 года.",
+                "about.description2": "Формируя современную строительную среду, в которой гармонично сочетаются функциональность и эстетическое мышление.Работа нашей команды основывается на ценностях честности, прозрачности, профессионализма и клиентоориентированного подхода.Наша миссия — создавать возможности, которые помогают людям воплотить их мечты и представления о пространстве в архитектурную реальность.",
+                
+                // Создать проект
+                "config.title": "Создать мой проект",
+                "config.subtitle": "Выберите необходимые поля и получите предварительную оценку для вашего проекта. Мы свяжемся с вами в течение 24 часов.",
+                "config.projectType": "Тип проекта",
+                "config.selectType": "Выберите тип",
+                "config.construction": "Строительство",
+                "config.renovation": "Реконструкция",
+                "config.design": "Дизайн", 
+                "config.building": "Строительные работы",
+                "config.objectType": "Тип объекта",
+                "config.selectObject": "Выберите тип",
+                "config.residential": "Жилой",
+                "config.public": "Общественный",
+                "config.industrial": "Производственный",
+                "config.area": "Площадь (м²)",
+                "config.areaPlaceholder": "Например: 120",
+                "config.estimate": "Предварительная оценка",
+                "config.contact": "Контакт с вами",
+                "config.namePlaceholder": "Имя",
+                "config.emailPlaceholder": "Эл. почта",
+                "config.phonePlaceholder": "Номер телефона",
+                
+                "config.detailsPlaceholder": "Опишите ваш проект...",
+                "config.submit": "Получить предложение",
+                "config.sending": "Отправляется...",
+                "config.success": "Предложение готово. Открывается почтовая программа...",
+                "config.error": "Произошла ошибка. Пожалуйста, попробуйте еще раз.",
+                
+                // Контакты
+                "contact.contactDetails": "Контактные данные",
+                "contact.phone": "+374 77 311 112",
+                "contact.address": "Адрес",
+                "contact.email": "kapitelarchitects@gmail.com",
+                "contact.addressText": "Гарегин Нжде 44, Ереван, Армения",
+                
+                // Footer
+                "footer.studio": "Архитектурная студия",
+                "footer.copyright": "© Kapitel Architects",
+                
+                // Сообщения об ошибках
+                "error.name": "Имя должно содержать не менее 2 символов",
+                "error.email": "Пожалуйста, введите действительный адрес электронной почты",
+                "error.phone": "Пожалуйста, введите действительный номер телефона",
+                "error.area": "Площадь должна быть в диапазоне 1-10000 м²",
+                
+                // Плейсхолдеры формы
+                "form.name": "Имя",
+                "form.email": "Эл. почта",
+                "form.phone": "Номер телефона",
+                "form.message": "Опишите ваш проект..."
+            },
+            en: {
+                // Navigation
+                "nav.services": "Services",
+                "nav.portfolio": "Portfolio",
+                "nav.about": "About Us",
+                "nav.contact": "Contact",
+                
+                // Hero section
+                "hero.title": "KAPITEL ARCHITECTS",
+                "hero.subtitle": "Projects in the rhythm of your life — designing residential and public spaces. We create functional, aesthetic and sustainable architectural solutions.",
+                "hero.contactBtn": "Contact Us",
+                "hero.projectBtn": "Create Your Project",
+                
+                // Statistics
+                "stats.projects": "Completed Projects",
+                "stats.experience": "Years of Experience",
+                "stats.clients": "Satisfied Clients",
+                
+                // Services
+                "services.title": "Services",
+                "services.sketchTitle": "Sketch Project",
+                "services.sketchDesc": "We start with the idea: presenting the initial look, style, and possible solutions of the space to clearly define the future project.",
+                "services.architectureTitle": "Architectural Design", 
+                "services.architectureDesc": "We develop the architectural project, including planning and engineering solutions, ensuring both structural and aesthetic integrity.",
+                "services.supervisionTitle": "Author Supervision",
+                "services.supervisionDesc": "We oversee construction work to ensure it follows the project and design concept — guaranteeing high quality and precision.",
+                "services.interiorTitle": "Interior Design",
+                "services.interiorDesc": "We create a harmonious and modern interior, considering the client's style, space capabilities, and functional requirements.",
+                "services.exteriorTitle": "Exterior Design", 
+                "services.exteriorDesc": "We design the exterior appearance of buildings and spaces, taking into account structural clarity and the uniqueness of the environment.",
+                "services.constructionTitle": "Construction and Renovation",
+                "services.constructionDesc": "We carry out construction and renovation work, ensuring quality, adherence to timelines, and control at every stage.",
+                
+                // Portfolio
+                "portfolio.title": "Portfolio",
+                "portfolio.videos": "Videos",
+                "portfolio.loadingPhotos": "Loading photos...",
+                "portfolio.loadingVideos": "Loading videos...",
+                "portfolio.back": "Go Back",
+                "portfolio.viewInstagram": "View on Instagram",
+                "portfolio.more": "More",
+                
+                // About Us
+                "about.title": "About Us",
+                "about.description1": "Kapitel Architects has been operating in the market since 2018.",
+                "about.description2": "Shaping a modern construction environment where functionality and aesthetic thinking are seamlessly integrated.Our team's work is based on values of honesty, transparency, professionalism, and a client-centered approach.Our mission is to create opportunities that help people turn their dreams and visions of space into architectural reality..",
+                
+                // Create Project
+                "config.title": "Create My Project",
+                "config.subtitle": "Select the required fields and get a preliminary estimate for your project. We will contact you within 24 hours.",
+                "config.projectType": "Project Type",
+                "config.selectType": "Select Type",
+                "config.construction": "Construction",
+                "config.renovation": "Renovation",
+                "config.design": "Design",
+                "config.building": "Building",
+                "config.objectType": "Object Type", 
+                "config.selectObject": "Select Type",
+                "config.residential": "Residential",
+                "config.public": "Public",
+                "config.industrial": "Industrial",
+                "config.area": "Area (m²)",
+                "config.areaPlaceholder": "Example: 120",
+                "config.estimate": "Preliminary estimate",
+                "config.contact": "Contact You",
+                "config.namePlaceholder": "Name",
+                "config.emailPlaceholder": "Email",
+                "config.phonePlaceholder": "Phone Number",
+                
+                "config.detailsPlaceholder": "Describe your project...",
+                "config.submit": "Get Quote",
+                "config.sending": "Sending...",
+                "config.success": "Quote is ready. Opening email client...",
+                "config.error": "An error occurred. Please try again.",
+                
+                // Contact
+                "contact.contactDetails": "Contact Details",
+                "contact.phone": "+374 77 311 112",
+                "contact.address": "Address",
+                "contact.email": "kapitelarchitects@gmail.com",
+                "contact.addressText": "Garegin Njdeh 44, Yerevan, Armenia",
+                
+                // Footer
+                "footer.studio": "Architectural Studio",
+                "footer.copyright": "© Kapitel Architects",
+                
+                // Error messages
+                "error.name": "Name must contain at least 2 characters",
+                "error.email": "Please enter a valid email address",
+                "error.phone": "Please enter a valid phone number",
+                "error.area": "Area must be between 1-10000 m²",
+                
+                // Form placeholders
+                "form.name": "Name",
+                "form.email": "Email",
+                "form.phone": "Phone Number",
+                "form.message": "Describe your project..."
+            }
+        };
+
+        // Language functions
+        function toggleLanguageMenu() {
+            const menu = document.getElementById('languageMenu');
+            if (menu) {
+                menu.classList.toggle('show');
+            }
+        }
+
+        // Close language menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.language-selector')) {
+                const menu = document.getElementById('languageMenu');
+                if (menu) menu.classList.remove('show');
+            }
+        });
+
+        // Portfolio functions
+        function initializePortfolio() {
+            setTimeout(() => {
+                renderGrid(portfolioData.photos, "photoGrid");
+                
+                // Add event listeners for pagination
+                document.getElementById('photoPrevBtn')?.addEventListener('click', function() {
+                    if (currentPhotoPage > 1) {
+                        changePage(currentPhotoPage - 1);
+                    }
+                });
+                
+                document.getElementById('photoNextBtn')?.addEventListener('click', function() {
+                    const totalPages = Math.ceil(portfolioData.photos.length / itemsPerPage);
+                    if (currentPhotoPage < totalPages) {
+                        changePage(currentPhotoPage + 1);
+                    }
+                });
+            }, 1000);
+        }
+
+        // Updated portfolio data with mixed media types
+        const portfolioData = {
+            photos: [
+
+                {
+                    id: 4,
+                    title: "Ամառանոց Զովունի",
+                    desc: "Ամառանոցը առանձնանում է ժամանակակից ճարտարապետությամբ և ընդարձակ բաց տարածքներով։ Այն միավորում է հարմարավետությունը և բնության խաղաղությունը՝ ստեղծելով կատարյալ միջավայր ընտանիքի հանգստի և ժամանցի համար։",
+                    thumb: "./images/20.jpg",
+                    media: [
+                        { type: "image", url: "./images/20.jpg" },
+                        { type: "image", url: "./images/21.jpg" },
+                        { type: "image", url: "./images/22.jpg" },
+                        { type: "image", url: "./images/23.jpg" },
+                      
+                    ],
+                    instagramUrl: "https://www.instagram.com/reel/DPJccqPjHPb/?igsh=OHlxY3NqYjBpbXdp",
+                    date: "2025-09-28"
+                },
+                {
+                    id: 5,
+                    title: "Հասարակական Գառնի",
+                    desc: "Երկհարկանի հասարակական շինությունն առանձնանում է պարզ ու գործնական ճարտարապետությամբ։ Տարածքը նախատեսված է տարբեր ծառայությունների և միջոցառումների կազմակերպման համար՝ ապահովելով հարմարավետ միջավայր։",
+                    thumb: "./images/24.jpg",
+                    media: [
+                        { type: "image", url: "./images/24.jpg" },
+                        { type: "image", url: "./images/25.jpg" },
+                        { type: "image", url: "./images/26.jpg" },
+                        { type: "image", url: "./images/27.jpg" },
+                        { type: "image", url: "./images/28.jpg" },
+                        { type: "video", url: "./videos/2.mp4" }
+                    ],
+                    instagramUrl: "https://www.instagram.com/share/_gMR6Z7SM",
+                    date: "2025-09-05"
+                },
+                {
+                    id: 1,
+                    title: "Առանձնատուն Առինջ",
+                    desc: "Եռահարկ բնակելի տուն Առինջում 250քմ։",
+                    thumb: "./images/1.jpg",
+                    media: [
+                        { type: "image", url: "./images/1.jpg" },
+                        { type: "image", url: "./images/2.jpg" },
+                        { type: "image", url: "./images/3.jpg" },
+                        { type: "image", url: "./images/4.jpg" },
+                        { type: "image", url: "./images/5.jpg" },
+                        { type: "image", url: "./images/6.jpg" },
+                        { type: "image", url: "./images/7.jpg" },
+                   
+                    ],
+                    instagramUrl: "https://www.instagram.com/kapitel_architects/",
+                    date: "2024-01-15"
+                },
+                {
+                    id: 2,
+                    title: "Առանձնատուն Դավթաշեն",
+                    desc: "Երկհարկանի բնակելի տուն Դավթաշենում 258 քմ",
+                    thumb: "./images/8.jpg",
+                    media: [
+                        { type: "image", url: "./images/8.jpg" },
+                        { type: "image", url: "./images/9.jpg" },
+                        { type: "image", url: "./images/10.jpg" },
+                        { type: "image", url: "./images/11.jpg" },
+                        { type: "image", url: "./images/12.jpg" },
+                        { type: "image", url: "./images/13.jpg" },
+                        { type: "image", url: "./images/14.jpg" },
+                
+                    ],
+                    instagramUrl: "https://www.instagram.com/share/BAQbVh9O8h",
+                    date: "2024-11-24"
+                },
+                {
+                    id: 3,
+                    title: "Ամառանոց Առինջ",
+                    desc: "Երկհարկանի բնակելի տուն Առինջում 189 քմ։",
+                    thumb: "./images/15.jpg",
+                    media: [
+                        { type: "image", url: "./images/15.jpg" },
+                        { type: "image", url: "./images/16.jpg" },
+                        { type: "image", url: "./images/17.jpg" },
+                        { type: "image", url: "./images/18.png" },
+                        { type: "image", url: "./images/19.jpg" },
+                              ],
+                    instagramUrl: "https://www.instagram.com/kapitel_architects/",
+                    date: "2025-01-05"
+                },
+                {
+                    id: 5,
+                    title: "Հասարակական Գառնի",
+                    desc: "Հասաարակական երկհարկանի շինություն Գառնիում  173 քմ։",
+                    thumb: "./images/24.jpg",
+                    media: [
+                        { type: "image", url: "./images/24.jpg" },
+                        { type: "image", url: "./images/25.jpg" },
+                        { type: "image", url: "./images/26.jpg" },
+                        { type: "image", url: "./images/27.jpg" },
+                        { type: "image", url: "./images/28.jpg" },
+                    ],
+                    instagramUrl: "https://www.instagram.com/share/_gMR6Z7SM",
+                    date: "2025-09-05"
+                },
+                {
+                    id: 6,
+                    title: "Առանձնատուն Մարտունի",
+                    desc: "Առանձնատան Էքստերիեր դիզայն և օժանդակ շինությունների կառուցման նախագիծ Մարտունիում։",
+                    thumb: "./images/29.jpg",
+                    media: [
+                        { type: "image", url: "./images/29.jpg" },
+                        { type: "image", url: "./images/31.jpg" },
+                        { type: "image", url: "./images/32.jpg" },
+                        { type: "image", url: "./images/33.jpg" },
+                        { type: "image", url: "./images/34.jpg" },
+                        { type: "image", url: "./images/35.jpg" },
+                        { type: "image", url: "./images/36.jpg" },
+                        { type: "image", url: "./images/37.jpg" },
+                        { type: "image", url: "./images/38.jpg" },
+                        { type: "image", url: "./images/39.jpg" },
+                        { type: "video", url: "./videos/1.mp4" }
+                    ],
+                    instagramUrl: "https://www.instagram.com/reel/DPoXcsmDKBE/?igsh=b3E1aWlrbzFzcDhk",
+                    date: "2024-12-10"
+                },
+                {
+                    id: 7,
+                    title: "Առանձնատուն Քասախ",
+                    desc: "Երկհարկանի բնակելի տուն Քասախում։",
+                    thumb: "./images/44.jpg",
+                    media: [
+                        { type: "image", url: "./images/40.jpg" },
+                        { type: "image", url: "./images/41.jpg" },
+                        { type: "image", url: "./images/42.jpg" },
+                        { type: "image", url: "./images/43.jpg" },
+                        { type: "image", url: "./images/44.jpg" },
+                        { type: "image", url: "./images/45.jpg" },
+                        { type: "image", url: "./images/46.png" },
+                        { type: "image", url: "./images/47.png" },
+            
+                    ],
+                    instagramUrl: "https://www.instagram.com/share/BAAoBB_xS5/",
+                    date: "2025-03-29"
+                },
+                {
+                    id: 8,
+                    title: "Առանձնատուն Մարտունի",
+                    desc: "Մանսարդային հարկով բնակելի տուն Մարտունիում։",
+                    thumb: "./images/48.jpg",
+                    media: [
+                        
+                        { type: "image", url: "./images/48.jpg" },
+                        { type: "image", url: "./images/49.jpg" },
+                        { type: "image", url: "./images/50.jpg" },
+                        { type: "image", url: "./images/51.png" },
+              
+                    ],
+                    instagramUrl: "https://www.instagram.com/kapitel_architects/",
+                    date: "2024-02-20"
+                },
+
+            ]
+        };
+
+        // Updated createPortfolioCard function to handle mixed media
+        function createPortfolioCard(item) {
+            const card = document.createElement("div");
+            card.className = "card portfolio-item";
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', `View ${item.title}`);
+            
+            card.addEventListener('click', function() {
+                openModal(item, portfolioData.photos, 'photo');
+            });
+            
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    openModal(item, portfolioData.photos, 'photo');
+                }
+            });
+
+            // Determine media type for thumbnail
+            const firstMedia = item.media && item.media.length > 0 ? item.media[0] : null;
+            const hasVideo = item.media && item.media.some(media => media.type === "video");
+            
+            let mediaHTML = '';
+            if (firstMedia) {
+                if (firstMedia.type === "video") {
+                    mediaHTML = `
+                        <div class="portfolio-media-container">
+                            <video class="portfolio-video" muted loop>
+                                <source src="${firstMedia.url}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="media-type-badge">
+                                <i class="fas fa-video"></i> Տեսանյութ
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    mediaHTML = `
+                        <div class="portfolio-media-container">
+                            <img src="${firstMedia.url}" class="portfolio-media" alt="${item.title}" loading="lazy">
+                            ${hasVideo ? `
+                                <div class="media-type-badge">
+                                    <i class="fas fa-images"></i> Նկարներ & Տեսանյութ
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
+            } else {
+                mediaHTML = `
+                    <div class="portfolio-media-container">
+                        <div class="instagram-fallback" style="height:100%">
+                            <i class="fab fa-instagram"></i>
+                            <p>Տվյալներ չկան</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            card.innerHTML = `
+                ${mediaHTML}
+                <div class="portfolio-content">
+                    <h3>${item.title}</h3>
+                    <p class="muted">${item.desc}</p>
+                    <small class="muted">${item.date}</small>
+                    <div class="portfolio-actions">
+
+                    </div>
+                </div>
+            `;
+            
+            // Auto-play videos on hover
+            const video = card.querySelector('video');
+            if (video) {
+                card.addEventListener('mouseenter', () => video.play());
+                card.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.currentTime = 0;
+                });
+            }
+            
+            return card;
+        }
+
+        // Modal functionality
+        let currentModalItem = null;
+        let currentModalItems = [];
+        let currentModalType = '';
+        let currentMediaIndex = 0;
+
+        function openModal(item, items, type) {
+            currentModalItem = item;
+            currentModalItems = items;
+            currentModalType = type;
+            currentMediaIndex = 0;
+            
+            modalTitle.textContent = item.title;
+            modalDescription.textContent = item.desc;
+            modalDate.textContent = formatDate(item.date);
+            modalInstagram.href = item.instagramUrl;
+            
+            modalMedia.innerHTML = '';
+            
+            if (item.media && item.media.length > 0) {
+                renderModalMedia(item.media, 0);
+            } else {
+                const fallback = document.createElement('div');
+                fallback.className = 'instagram-fallback';
+                fallback.style.height = '300px';
+                fallback.innerHTML = `
+                    <i class="fab fa-instagram"></i>
+                    <p>Տվյալներ չկան</p>
+                `;
+                modalMedia.appendChild(fallback);
+            }
+            
+            updateModalNavigation();
+            portfolioModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function renderModalMedia(mediaArray, index) {
+            modalMedia.innerHTML = '';
+            
+            const mediaContainer = document.createElement('div');
+            mediaContainer.className = 'modal-media-container';
+            
+            const currentMedia = mediaArray[index];
+            
+            if (currentMedia.type === "video") {
+                const video = document.createElement('video');
+                video.className = 'modal-video';
+                video.controls = true;
+                video.autoplay = true;
+                
+                const source = document.createElement('source');
+                source.src = currentMedia.url;
+                source.type = 'video/mp4';
+                
+                video.appendChild(source);
+                video.innerHTML += 'Your browser does not support the video tag.';
+                mediaContainer.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.className = 'modal-media';
+                img.src = currentMedia.url;
+                img.alt = currentModalItem.title;
+                mediaContainer.appendChild(img);
+            }
+            
+            // Add counter if multiple media items
+            if (mediaArray.length > 1) {
+                const counter = document.createElement('div');
+                counter.className = 'modal-media-counter';
+                counter.textContent = `${index + 1} / ${mediaArray.length}`;
+                mediaContainer.appendChild(counter);
+                
+                // Add navigation buttons
+                const navContainer = document.createElement('div');
+                navContainer.className = 'modal-media-nav';
+                
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'modal-nav-btn';
+                prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                prevBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    navigateModalMedia(-1, mediaArray);
+                };
+                
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'modal-nav-btn';
+                nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                nextBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    navigateModalMedia(1, mediaArray);
+                };
+                
+                navContainer.appendChild(prevBtn);
+                navContainer.appendChild(nextBtn);
+                mediaContainer.appendChild(navContainer);
+            }
+            
+            modalMedia.appendChild(mediaContainer);
+        }
+
+        function navigateModalMedia(direction, mediaArray) {
+            currentMediaIndex = (currentMediaIndex + direction + mediaArray.length) % mediaArray.length;
+            renderModalMedia(mediaArray, currentMediaIndex);
+        }
+
+        function closeModal() {
+            portfolioModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function navigateModal(direction) {
+            if (!currentModalItem || currentModalItems.length === 0) return;
+            
+            const currentIndex = currentModalItems.findIndex(item => item.id === currentModalItem.id);
+            if (currentIndex === -1) return;
+            
+            let newIndex;
+            if (direction === 'next') {
+                newIndex = (currentIndex + 1) % currentModalItems.length;
+            } else {
+                newIndex = (currentIndex - 1 + currentModalItems.length) % currentModalItems.length;
+            }
+            
+            const newItem = currentModalItems[newIndex];
+            openModal(newItem, currentModalItems, currentModalType);
+        }
+
+        function updateModalNavigation() {
+            if (!currentModalItem || currentModalItems.length === 0) {
+                modalPrev.disabled = true;
+                modalNext.disabled = true;
+                return;
+            }
+            
+            modalPrev.disabled = false;
+            modalNext.disabled = false;
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('hy-AM', options);
+        }
+
+        // Form validation and submission
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidPhone(phone) {
+            return /^[0-9+\-\s()]{8,}$/.test(phone.replace(/\s/g, ''));
+        }
+
+        function isValidName(name) {
+            return name.trim().length >= 2;
+        }
+
+        function isValidArea(area) {
+            return area > 0 && area < 10000;
+        }
+
+        function validateForm() {
+            let isValid = true;
+            
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            document.querySelectorAll('input, select').forEach(el => el.classList.remove('error'));
+
+            const name = document.getElementById('nameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            const area = document.getElementById('areaInput').value;
+
+            if (!isValidName(name)) {
+                document.getElementById('nameError').textContent = 'Անունը պետք է պարունակի առնվազն 2 նիշ';
+                document.getElementById('nameInput').classList.add('error');
+                isValid = false;
+            }
+
+            // Email is now optional, but if provided, it should be valid
+            if (email && !isValidEmail(email)) {
+                document.getElementById('emailError').textContent = 'Խնդրում ենք մուտքագրել վավեր էլ․փոստի հասցե';
+                document.getElementById('emailInput').classList.add('error');
+                isValid = false;
+            }
+
+            if (!isValidPhone(phone)) {
+                document.getElementById('phoneError').textContent = 'Խնդրում ենք մուտքագրել վավեր հեռախոսահամար';
+                document.getElementById('phoneInput').classList.add('error');
+                isValid = false;
+            }
+
+            if (!isValidArea(area)) {
+                document.getElementById('areaError').textContent = 'Մակերեսը պետք է լինի 1-10000 մ² միջակայքում';
+                document.getElementById('areaInput').classList.add('error');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // EmailJS function with your credentials
+        async function onSendRequest(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) return false;
+            
+            const btn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const originalText = submitText.textContent;
+            
+            btn.disabled = true;
+            submitText.innerHTML = '<div class="loading"></div>Ուղարկվում է...';
+
+            try {
+                const type = document.getElementById('typeSelect').value;
+                const object = document.getElementById('objectSelect').value;
+                const area = document.getElementById('areaInput').value;
+                const name = document.getElementById('nameInput').value;
+                const email = document.getElementById('emailInput').value;
+                const phone = document.getElementById('phoneInput').value;
+                const message = document.getElementById('messageInput').value;
+
+                const calculatedPrice = calculatePrice(type, object, area);
+
+                // Ուղարկել նամակ EmailJS-ով
+                await emailjs.send('service_vewbq7i', 'template_1m9a5vd', {
+                    to_email: 'kapitelarchitects@gmail.com',
+                    from_name: name,
+                    from_email: email || 'չի նշվել',
+                    phone: phone,
+                    project_type: document.querySelector(`#typeSelect option[value="${type}"]`).textContent,
+                    object_type: document.querySelector(`#objectSelect option[value="${object}"]`).textContent,
+                    area: area,
+                    estimated_price: calculatedPrice.toLocaleString('hy-AM') + ' AMD',
+                    additional_details: message || 'Լրացուցիչ մանրամասներ չեն նշվել',
+                    subject: `Kapitel - Գնառաջարկ ${name}-ի համար`
+                });
+                
+                document.getElementById('result').innerHTML = 
+                    '<div class="success-message">✅ Ձեր հարցումը հաջողությամբ ուղարկվել է։ Մենք կկապնվենք Ձեզ հետ 24 ժամվա ընթացքում։</div>';
+
+                // Մաքրել ֆորման հաջող ուղարկումից հետո
+                setTimeout(() => {
+                    document.getElementById('configForm').reset();
+                    document.getElementById('priceEstimate').style.display = 'none';
+                    document.getElementById('priceEstimate').classList.remove('show');
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error sending request:', error);
+                // Եթե EmailJS-ը ձախողվի, օգտագործել mailto fallback
+                const name = document.getElementById('nameInput').value;
+                const email = document.getElementById('emailInput').value;
+                const phone = document.getElementById('phoneInput').value;
+                const message = document.getElementById('messageInput').value;
+                const type = document.getElementById('typeSelect').value;
+                const object = document.getElementById('objectSelect').value;
+                const area = document.getElementById('areaInput').value;
+                const calculatedPrice = calculatePrice(type, object, area);
+
+                const subject = `Kapitel - Գնառաջարկ ${name}-ի համար`;
+                const body = encodeURIComponent(`
+Պարոն/Տիկին ${name},
+
+Շնորհակալություն Ձեր հարցման համար։ Մեր գնառաջարկը Ձեր նախագծի համար․
+
+📋 ՆԿԱՐԱԳՐՈՒԹՅՈՒՆ
+• Նախագծի տեսակ․ ${document.querySelector(`#typeSelect option[value="${type}"]`).textContent}
+• Օբյեկտի տեսակ․ ${document.querySelector(`#objectSelect option[value="${object}"]`).textContent}
+• Մակերես․ ${area} մ²
+
+💰 ԳՆԱՌԱՋԱՔ
+Նախնական գնահատական․ ${calculatedPrice.toLocaleString('hy-AM')} AMD
+
+📞 ԿՈՆՏԱԿՏԱՅԻՆ ՏՎՅԱԼՆԵՐ
+• Անուն․ ${name}
+• Էլ․ փոստ․ ${email || 'չի նշվել'}
+• Հեռախոսահամար․ ${phone}
+
+📝 ԼՐԱՑՈՒՑԻՉ ՄԱՆՐԱՄԱՍՆԵՐ
+${message || 'Լրացուցիչ մանրամասներ չեն նշվել'}
+
+Հարգանքներով՝
+Kapitel Architects
+                `);
+
+                document.getElementById('result').innerHTML = 
+                    '<div class="success-message">✅ Գնառաջարկը պատրաստ է։ Բացվում է փոստի ծրագիրը...</div>';
+                
+                window.location.href = `mailto:kapitelarchitects@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            } finally {
+                setTimeout(() => {
+                    btn.disabled = false;
+                    submitText.textContent = originalText;
+                }, 3000);
+            }
+            
+            return false;
+        }
+
+        // Back to top functionality
+        function initializeBackToTop() {
+            window.addEventListener('scroll', function() {
+                const backToTop = document.getElementById('backToTop');
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Smooth scrolling
+        // Smooth scrolling with offset for header
+        function initializeSmoothScrolling() {
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.getElementById('mainHeader').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Event listeners for modal
+        const portfolioModal = document.getElementById('portfolioModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMedia = document.getElementById('modalMedia');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalDate = document.getElementById('modalDate');
+        const modalInstagram = document.getElementById('modalInstagram');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+
+        modalClose.addEventListener('click', closeModal);
+        modalPrev.addEventListener('click', () => navigateModal('prev'));
+        modalNext.addEventListener('click', () => navigateModal('next'));
+
+        // Close modal when clicking outside content
+        portfolioModal.addEventListener('click', (e) => {
+            if (e.target === portfolioModal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && portfolioModal.style.display === 'block') {
+                closeModal();
+            }
+        });
+
+        // Real-time validation for form inputs
+        document.getElementById('configForm').addEventListener('input', function(e) {
+            if (e.target.id === 'emailInput' && e.target.value) {
+                if (!isValidEmail(e.target.value)) {
+                    e.target.classList.add('error');
+                } else {
+                    e.target.classList.remove('error');
+                }
+            }
+            
+            if (e.target.id === 'phoneInput' && e.target.value) {
+                if (!isValidPhone(e.target.value)) {
+                    e.target.classList.add('error');
+                } else {
+                    e.target.classList.remove('error');
+                }
+            }
+        });
+
+        // Touch device optimizations
+        function initTouchGestures() {
+            // Add touch-specific optimizations if needed
+            console.log('Touch gestures initialized');
+        }
+
+        // Initialize touch gestures
+        document.addEventListener('DOMContentLoaded', function() {
+            initTouchGestures();
+        });
+
+        // Սխալների մշակման ֆունկցիա
+        window.addEventListener('error', function(e) {
+            console.error('Global error:', e.error);
+        });
+
+        // Ստուգել, որ բոլոր անհրաժեշտ տարրերը գոյություն ունեն
+        function checkRequiredElements() {
+            const requiredElements = [
+                'typeSelect', 'objectSelect', 'areaInput', 
+                'estimatedPrice', 'priceEstimate'
+            ];
+            
+            requiredElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (!element) {
+                    console.error(`Required element not found: ${id}`);
+                } else {
+                    console.log(`Element found: ${id}`);
+                }
+            });
+        }
+
+        // Կանչել ստուգման ֆունկցիան էջի բեռնման ժամանակ
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(checkRequiredElements, 1000);
+        });
+
+    </script>
+</body>
+</html>
